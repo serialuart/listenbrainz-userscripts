@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         ListenBrainz Fancy Profiles
 // @namespace    http://tampermonkey.net/
-// @version      2026-09-17
+// @version      2026-09-18
 // @description  User bios from MusicBrainz and custom profile pictures for ListenBrainz
 // @author       uart (https://uart.sh)
 // @downloadURL  https://raw.github.com/serialuart/listenbrainz-userscripts/main/lb_fancy_profiles.user.js
@@ -134,7 +134,7 @@
 
             bio.innerHTML = userInfo.bio.innerHTML;
         } else {
-            bio.innerHTML = '<span class="no-bio">This user is a mystery.</span>';
+            bio.innerHTML = '<span class="no-bio">This user is shrouded in mystery.</span>';
         }
 
         // Fill remaining data.
