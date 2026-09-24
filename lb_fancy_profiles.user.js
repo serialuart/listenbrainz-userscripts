@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         ListenBrainz Fancy Profiles
 // @namespace    http://tampermonkey.net/
-// @version      2026.09.24.1
+// @version      2026.09.24.2
 // @description  User bios from MusicBrainz and custom profile pictures for ListenBrainz
 // @author       uart (https://uart.sh)
 // @downloadURL  https://raw.github.com/serialuart/listenbrainz-userscripts/main/lb_fancy_profiles.user.js
@@ -123,7 +123,7 @@
             function sanitize(node) {
                 node.childNodes.forEach((child) => {
                     if (child.nodeType === Node.ELEMENT_NODE) {
-                        if (!["A", "BDI", "EM", "STRONG", "P", "UL", "LI", "H1", "H2", "H3", "H4", "H5", "H6", "HR"].includes(child.tagName)) {
+                        if (!["A", "BDI", "EM", "STRONG", "P", "UL", "LI", "H1", "H2", "H3", "H4", "H5", "H6", "HR", "BR"].includes(child.tagName)) {
                             node.insertBefore(document.createTextNode(child.textContent), child);
                             node.removeChild(child);
                         } else {
