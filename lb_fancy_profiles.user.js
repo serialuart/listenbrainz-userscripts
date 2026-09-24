@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         ListenBrainz Fancy Profiles
 // @namespace    http://tampermonkey.net/
-// @version      2026-09-24
+// @version      2026.09.24.1
 // @description  User bios from MusicBrainz and custom profile pictures for ListenBrainz
 // @author       uart (https://uart.sh)
 // @downloadURL  https://raw.github.com/serialuart/listenbrainz-userscripts/main/lb_fancy_profiles.user.js
@@ -116,12 +116,14 @@
             // and ready to be included verbatim; however, just to be sure, we sanitize the
             // input and only pass through known markup.
             //
-            // (Fun fact - user bios follow edit note markup (https://musicbrainz.org/doc/Edit_Note)!)
+            // (Fun fact - user bios follow wiki markup (see e.g. https://musicbrainz.org/doc/Annotation),
+            // except for code blocks which cause all HTML tags to turn into regular text (probably a bug?)
+            // If they ever get fixed, add CODE and PRE to the list below:)
 
             function sanitize(node) {
                 node.childNodes.forEach((child) => {
                     if (child.nodeType === Node.ELEMENT_NODE) {
-                        if (!["A", "BDI", "EM", "STRONG", "P", "UL", "LI", "H1", "H2", "H3", "H4", "H5", "H6"].includes(child.tagName)) {
+                        if (!["A", "BDI", "EM", "STRONG", "P", "UL", "LI", "H1", "H2", "H3", "H4", "H5", "H6", "HR"].includes(child.tagName)) {
                             node.insertBefore(document.createTextNode(child.textContent), child);
                             node.removeChild(child);
                         } else {
