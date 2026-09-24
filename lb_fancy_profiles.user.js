@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         ListenBrainz Fancy Profiles
 // @namespace    http://tampermonkey.net/
-// @version      2026-09-18
+// @version      2026-09-24
 // @description  User bios from MusicBrainz and custom profile pictures for ListenBrainz
 // @author       uart (https://uart.sh)
 // @downloadURL  https://raw.github.com/serialuart/listenbrainz-userscripts/main/lb_fancy_profiles.user.js
@@ -33,6 +33,7 @@
         #lbfp-profile-info.loading > * { display: none; }
         #lbfp-profile-info.loading > .loading-spinner { display: block; }
 
+        #lbfp-profile-info > .bio { max-height: 300px; overflow-y: scroll; }
         #lbfp-profile-info > .bio > .no-bio { color: var(--bs-secondary-color); opacity: 0.5; }
         #lbfp-profile-info > .bio > p { margin-bottom: 5px; }
         #lbfp-profile-info > .bio > *:last-child { margin-bottom: 0; }
@@ -120,7 +121,7 @@
             function sanitize(node) {
                 node.childNodes.forEach((child) => {
                     if (child.nodeType === Node.ELEMENT_NODE) {
-                        if (!["A", "BDI", "EM", "STRONG", "P"].includes(child.tagName)) {
+                        if (!["A", "BDI", "EM", "STRONG", "P", "UL", "LI", "H1", "H2", "H3", "H4", "H5", "H6"].includes(child.tagName)) {
                             node.insertBefore(document.createTextNode(child.textContent), child);
                             node.removeChild(child);
                         } else {
